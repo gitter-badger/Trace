@@ -290,7 +290,13 @@ public:
         
 	Camera *getCamera() { return &camera; }
 
-	
+
+	CSGTree addCSGObject(Geometry * obj){
+		CSGNode nd;
+		CSGNodeArray.push_back(nd);
+		CSGTree temp(obj, &CSGNodeArray[CSGNodeArray.size() - 1]);
+		return temp;
+	}
 
 private:
 	int currentOrder;
@@ -304,6 +310,7 @@ private:
 	// must fall within this bounding box.  Objects that don't have hasBoundingBoxCapability()
 	// are exempt from this requirement.
 	BoundingBox sceneBounds;
+	vector<CSGNode> CSGNodeArray;
 };
 
 #endif // __SCENE_H__
